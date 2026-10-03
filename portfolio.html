@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Navodya De Silva — UI/UX Designer & Full-Stack Developer</title>
+    <meta name="description" content="Navodya De Silva — UI/UX Designer & Full-Stack Developer HNDIT student at SLIATE. Crafting beautiful, user-centered digital experiences with Figma, HTML, CSS, JavaScript, PHP & Java.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Animated background glowing blobs -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- ==========================================================================
+         Header / Navigation Bar
+         ========================================================================== -->
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <div class="d-flex align-items-center gap-3">
+                <a href="index.html" class="btn btn-sm btn-outline-custom d-flex align-items-center gap-1 py-1 px-2" title="Back to Welcome">
+                    <i class="fa-solid fa-house fa-sm"></i>
+                </a>
+                <a class="navbar-brand d-flex align-items-center gap-2" href="#hero">
+                <span class="navbar-brand-name">Navodya<span class="gradient-text">.</span></span>
+                </a>
+            </div>
+
+            <button class="navbar-toggler border-0 shadow-none text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars-staggered fa-lg"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 mt-3 mt-lg-0">
+                    <!-- Cute Lamp Theme Toggle -->
+                    <button id="themeToggleBtn" class="lamp-toggle-btn" title="Toggle Dark / Light Mode" aria-label="Toggle Theme">
+                        <svg id="lampSvg" class="lamp-svg-icon" viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Shade glow (inner) -->
+                            <ellipse id="shadeGlow" class="lamp-shade-glow" cx="40" cy="62" rx="26" ry="5"/>
+                            <!-- Shade dome -->
+                            <path id="lampShade" class="lamp-shade" d="M16,62 Q13,34 40,26 Q67,34 64,62 Z"/>
+                            <!-- Shade rim -->
+                            <rect id="lampRim" class="lamp-rim" x="16" y="59" width="48" height="5" rx="2.5"/>
+                            <!-- Shine highlight -->
+                            <ellipse cx="30" cy="38" rx="8" ry="4" fill="rgba(255,255,255,0.06)" transform="rotate(-15,30,38)"/>
+                            <!-- Cheeks -->
+                            <ellipse class="lamp-cheek" cx="27" cy="52" rx="5" ry="3.5"/>
+                            <ellipse class="lamp-cheek" cx="53" cy="52" rx="5" ry="3.5"/>
+                            <!-- Closed eyes (dark mode = lamp off = sleeping) -->
+                            <g id="eyesClosed">
+                                <path d="M31,44 Q34,41 37,44" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M43,44 Q46,41 49,44" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+                            </g>
+                            <!-- Open eyes (light mode = lamp on = awake) -->
+                            <g id="eyesOpen" style="opacity:0">
+                                <circle cx="34" cy="44" r="2.5" fill="rgba(255,255,255,0.95)"/>
+                                <circle cx="46" cy="44" r="2.5" fill="rgba(255,255,255,0.95)"/>
+                                <circle cx="34.6" cy="43.3" r="1" fill="#2a2060"/>
+                                <circle cx="46.6" cy="43.3" r="1" fill="#2a2060"/>
+                            </g>
+                            <!-- Smile -->
+                            <path d="M34,56 Q40,61 46,56" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+                            <!-- Stem -->
+                            <path id="lampStem" class="lamp-stem" d="M37,64 Q35,85 37,100 L43,100 Q45,85 43,64 Z"/>
+                            <!-- Base -->
+                            <ellipse id="lampBase" class="lamp-base" cx="40" cy="100" rx="16" ry="4"/>
+                            <ellipse id="lampBase2" class="lamp-base" cx="40" cy="103" rx="12" ry="3"/>
+                            <!-- Pull chain -->
+                            <line x1="58" y1="62" x2="58" y2="88" stroke="#9a8050" stroke-width="1.2" stroke-dasharray="3,3"/>
+                            <circle cx="58" cy="91" r="4" fill="#f0c040" class="lamp-bead"/>
+                        </svg>
+                        <span class="lamp-toggle-label" id="lampLabel">Dark</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================================================
+         Hero Section
+         ========================================================================== -->
+    <section id="hero" class="hero-section">
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="mb-3">
+                        <div class="badge-status">
+                            <span class="pulse-dot"></span>
+                            Open to UI/UX Design &amp; Full-Stack Opportunities
+                        </div>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Hi, I am <br>
+                        <span class="gradient-text">Navodya De Silva</span>
+                    </h1>
+
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="typewriter-text" id="typewriterText"></span>
+                    </div>
+
+                    <p class="text-secondary lead fs-6 mb-4" style="max-width: 580px;">
+                        Passionate <strong>UI/UX Designer &amp; Full-Stack Developer</strong> Crafting beautiful, user-centered digital experiences — from polished Figma prototypes to fully functional web &amp; desktop applications.
+                    </p>
+
+                    <!-- Contact chips -->
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="mailto:navodyadahami5@gmail.com" class="text-secondary small text-decoration-none d-inline-flex align-items-center hover-primary">
+                            <i class="fa-solid fa-envelope text-primary me-2"></i> navodyadahami5@gmail.com
+                        </a>
+                        <a href="https://github.com/navodya-desilva" target="_blank" class="text-secondary small text-decoration-none d-inline-flex align-items-center hover-primary">
+                            <i class="fa-brands fa-github text-primary me-2"></i> github.com/navodya-desilva
+                        </a>
+                    </div>
+
+                    <!-- Call to action buttons -->
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-primary-gradient">
+                            <i class="fa-solid fa-paper-plane me-1"></i> Hire Me / Get In Touch
+                        </a>
+                        <a href="#projects" class="btn btn-outline-custom">
+                            <i class="fa-solid fa-palette me-1"></i> View My Work
+                        </a>
+                        <a href="assets/cv/Dahami_Navodya_De_Silva CV.pdf" download="Dahami_Navodya_De_Silva CV.pdf" class="btn btn-outline-custom">
+                            <i class="fa-solid fa-file-arrow-down me-1"></i> Download CV
+                        </a>
+                    </div>
+
+                    <!-- Social Handles -->
+                    <div class="d-flex align-items-center gap-3 mt-4 pt-2">
+                        <span class="text-light fw-bold small">Connect:</span>
+                        <a href="mailto:navodyadahami5@gmail.com" class="theme-toggle-btn text-decoration-none" title="Send Email">
+                            <i class="fa-solid fa-envelope text-info"></i>
+                        </a>
+                        <a href="https://github.com/navodya-desilva" target="_blank" class="theme-toggle-btn text-decoration-none" title="GitHub">
+                            <i class="fa-brands fa-github text-light"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dahami-navodya-de-silva-a83017412" target="_blank" class="theme-toggle-btn text-decoration-none" title="LinkedIn Profile">
+                            <i class="fa-brands fa-linkedin-in text-primary"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Professional Hero Photo -->
+                <div class="col-lg-5 mt-5 mt-lg-0 d-flex justify-content-center align-items-center">
+                    <div style="position:relative; display:inline-block;">
+                        <!-- Accent line decoration -->
+                        <div style="position:absolute;top:-12px;left:-12px;width:60px;height:60px;border-top:3px solid var(--accent);border-left:3px solid var(--accent);border-radius:4px 0 0 0;"></div>
+                        <div style="position:absolute;bottom:-12px;right:-12px;width:60px;height:60px;border-bottom:3px solid var(--accent);border-right:3px solid var(--accent);border-radius:0 0 4px 0;"></div>
+
+                        <!-- Photo -->
+                        <img src="assets/images/profile.jpg" alt="Navodya De Silva"
+                             style="width:280px;height:320px;object-fit:cover;object-position:top center;
+                                    border-radius:16px;display:block;
+                                    box-shadow:0 20px 50px rgba(0,0,0,0.4);">
+
+                        <!-- Name plate -->
+                        <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+                                    white-space:nowrap;
+                                    background:rgba(6,13,31,0.85);
+                                    backdrop-filter:blur(10px);
+                                    border:1px solid rgba(0,176,186,0.3);
+                                    border-radius:50px;padding:8px 20px;text-align:center;">
+                            <div style="font-weight:700;font-size:0.88rem;color:#E7EDF6;">Navodya De Silva</div>
+                            <div style="font-size:0.7rem;color:var(--accent);">UI/UX Designer &amp; Full-Stack Developer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         Quick Stats Counter Section
+         ========================================================================== -->
+    <section class="py-4" id="statsSection">
+        <div class="container">
+            <div class="row g-3 justify-content-center">
+                <div class="col-6 col-md-3">
+                    <div class="glass-card stat-box">
+                        <div class="stat-number" data-target="2" data-suffix="+">0</div>
+                        <div class="stat-label">Major Projects Built</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="glass-card stat-box">
+                        <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                        <div class="stat-label">Core Technologies</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         About Me Section
+         ========================================================================== -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-tag"><i class="fa-solid fa-user"></i> About Me</div>
+                <h2 class="section-title">Who I <span class="gradient-text">Am</span></h2>
+            </div>
+
+            <div class="row g-4 align-items-center justify-content-center">
+                <!-- Bio Text -->
+                <div class="col-lg-8">
+                    <div class="glass-card p-4 p-md-5">
+
+                        <!-- Intro highlight -->
+                        <div class="d-flex align-items-start gap-3 mb-4">
+                            <div class="flex-shrink-0 p-3 rounded-3" style="background:rgba(0,176,186,0.12);">
+                                <i class="fa-solid fa-user-pen fa-lg" style="color:var(--accent);"></i>
+                            </div>
+                            <p class="mb-0 fw-semibold" style="font-size:1.05rem;line-height:1.75;color:var(--text);">
+                                Hi, I'm <strong>Navodya De Silva</strong>, an IT student and aspiring
+                                <strong>UI/UX Designer &amp; Full-Stack Developer</strong> with a passion for creating
+                                digital experiences that are both visually engaging and technically effective.
+                            </p>
+                        </div>
+
+                        <hr style="border-color:var(--surface-border);margin:1.5rem 0;">
+
+                        <p class="text-secondary mb-3" style="line-height:1.85;">
+                            I enjoy turning ideas into practical digital solutions — from designing intuitive user
+                            interfaces and experiences to developing responsive, functional web applications. My
+                            interests lie at the intersection of <strong>design, technology, and problem-solving</strong>,
+                            allowing me to approach projects from both a creative and technical perspective.
+                        </p>
+
+                        <p class="text-secondary mb-3" style="line-height:1.85;">
+                            I'm continuously building my skills in <strong>UI/UX design, user research,
+                            wireframing, prototyping, frontend development, backend development, databases,</strong>
+                            and responsive web design. I enjoy learning new technologies, experimenting with ideas,
+                            and improving my work through hands-on projects and feedback.
+                        </p>
+
+                        <p class="text-secondary mb-0" style="line-height:1.85;">
+                            I'm currently looking for opportunities to <strong>learn, collaborate, and gain
+                            real-world experience</strong>, while growing as a well-rounded IT professional and
+                            creating meaningful digital products that solve real-world problems.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Side cards -->
+                <div class="col-lg-4">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="glass-card p-4">
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <div class="p-2 rounded-3" style="background:rgba(245,158,11,0.15);color:#f59e0b;">
+                                    <i class="fa-solid fa-palette fa-lg"></i>
+                                </div>
+                                <h6 class="fw-bold mb-0">UI/UX Design</h6>
+                            </div>
+                            <p class="text-secondary small mb-0">Figma · Wireframing · Prototyping · User Research · Responsive Design</p>
+                        </div>
+
+                        <div class="glass-card p-4">
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <div class="p-2 rounded-3" style="background:rgba(0,176,186,0.12);color:var(--accent);">
+                                    <i class="fa-solid fa-code fa-lg"></i>
+                                </div>
+                                <h6 class="fw-bold mb-0">Full-Stack Dev</h6>
+                            </div>
+                            <p class="text-secondary small mb-0">PHP · Java · JavaScript · MySQL · HTML5 · CSS3</p>
+                        </div>
+
+                        <div class="glass-card p-4">
+                            <div class="d-flex align-items-center gap-3 mb-2">
+                                <div class="p-2 rounded-3" style="background:rgba(16,185,129,0.12);color:#10b981;">
+                                    <i class="fa-solid fa-lightbulb fa-lg"></i>
+                                </div>
+                                <h6 class="fw-bold mb-0">Open to Work</h6>
+                            </div>
+                            <p class="text-secondary small mb-0">Internships · Collaborations · Freelance Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         Education Timeline Section
+         ========================================================================== -->
+    <section id="education" class="py-5 bg-surface">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Background</div>
+                <h2 class="section-title">Education &amp; <span class="gradient-text">Qualifications</span></h2>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="glass-card p-4">
+                                <div class="d-flex flex-wrap justify-content-between align-items-baseline mb-2">
+                                    <h5 class="fw-bold mb-1 text-primary">Higher National Diploma in Information Technology (HNDIT)</h5>
+                                    <span class="badge bg-primary bg-opacity-25 text-primary">In progress</span>
+                                </div>
+                                <h6 class="text-secondary fw-semibold mb-3">
+                                    <i class="fa-solid fa-building-columns me-2"></i>SLIATE (Sri Lanka Institute of Advanced Technological Education)
+                                </h6>
+                                <p class="text-secondary small mb-2">
+                                    Focus areas: full-stack web development, UI/UX design, database management, software engineering, and IoT hardware integration.
+                                </p>
+                                <div class="p-3 rounded-3 bg-dark bg-opacity-50 border border-secondary border-opacity-25">
+                                    <div class="small fw-bold text-light mb-2"><i class="fa-solid fa-book-open me-2 text-primary"></i>Core Subjects &amp; Specializations:</div>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        <span class="skill-pill small">UI/UX Design Principles</span>
+                                        <span class="skill-pill small">Java Programming</span>
+                                        <span class="skill-pill small">Full-Stack Web (PHP/JS)</span>
+                                        <span class="skill-pill small">Database Systems (MySQL)</span>
+                                        <span class="skill-pill small">Object-Oriented Programming</span>
+                                        <span class="skill-pill small">Software Engineering</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         Skills Matrix Section
+         ========================================================================== -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-tag"><i class="fa-solid fa-gears"></i> Technical &amp; Design Skills</div>
+                <h2 class="section-title">Skills &amp; <span class="gradient-text">Tools</span></h2>
+            </div>
+
+            <div class="row g-4">
+                <!-- UI/UX & Design -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card skill-card">
+                        <div class="skill-category-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <h6 class="fw-bold mb-3">UI/UX &amp; Design</h6>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-pill"><i class="fa-brands fa-figma text-danger"></i> Figma</span>
+                            <span class="skill-pill"><i class="fa-solid fa-object-group text-primary"></i> Wireframing</span>
+                            <span class="skill-pill"><i class="fa-solid fa-layer-group text-warning"></i> Prototyping</span>
+                            <span class="skill-pill"><i class="fa-solid fa-mobile-screen text-success"></i> Responsive UX</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card skill-card">
+                        <div class="skill-category-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h6 class="fw-bold mb-3">Languages</h6>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-pill"><i class="fa-brands fa-java text-danger"></i> Java</span>
+                            <span class="skill-pill"><i class="fa-brands fa-php text-primary"></i> PHP</span>
+                            <span class="skill-pill"><i class="fa-brands fa-js text-warning"></i> JavaScript</span>
+                            <span class="skill-pill"><i class="fa-solid fa-c"></i> C++</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web & Data -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card skill-card">
+                        <div class="skill-category-icon" style="background: rgba(6, 182, 212, 0.15); color: #06b6d4;">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h6 class="fw-bold mb-3">Web &amp; Data</h6>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-pill"><i class="fa-brands fa-html5 text-danger"></i> HTML5 &amp; CSS3</span>
+                            <span class="skill-pill"><i class="fa-solid fa-database text-primary"></i> MySQL</span>
+                            <span class="skill-pill"><i class="fa-brands fa-bootstrap text-purple" style="color:#8b5cf6;"></i> Bootstrap 5</span>
+                            <span class="skill-pill"><i class="fa-solid fa-network-wired text-info"></i> REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools & Hardware -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card skill-card">
+                        <div class="skill-category-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                            <i class="fa-solid fa-wrench"></i>
+                        </div>
+                        <h6 class="fw-bold mb-3">Tools &amp; Hardware</h6>
+                        <div class="d-flex flex-wrap">
+                            <span class="skill-pill"><i class="fa-solid fa-cubes text-warning"></i> Apache NetBeans</span>
+                            <span class="skill-pill"><i class="fa-solid fa-microchip text-success"></i> Arduino</span>
+                            <span class="skill-pill"><i class="fa-brands fa-git-alt text-danger"></i> Git &amp; GitHub</span>
+                            <span class="skill-pill"><i class="fa-solid fa-server text-info"></i> XAMPP</span>
+                            <span class="skill-pill"><i class="fa-solid fa-code text-primary"></i> VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         Selected Work / Projects Showcase
+         ========================================================================== -->
+    <section id="projects" class="py-5 bg-surface">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-tag"><i class="fa-solid fa-folder-open"></i> Selected Work</div>
+                <h2 class="section-title">Personal <span class="gradient-text">Projects</span></h2>
+                <p class="text-secondary mx-auto" style="max-width: 650px;">
+                    Practical software applications built with clean UI/UX layout, database integration, and smart hardware automation.
+                </p>
+
+                <!-- Filter Controls -->
+                <div class="d-flex flex-wrap justify-content-center gap-2 mt-4">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="desktop">Desktop &amp; Web Apps</button>
+                    <button class="filter-btn" data-filter="iot">IoT &amp; Hardware</button>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- Project 1: Cafe Management System -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="desktop">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <div class="d-flex align-items-center justify-content-center h-100 bg-dark text-primary fs-1">
+                                <i class="fa-solid fa-mug-hot"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <button class="btn btn-sm btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#projectModal1">
+                                    <i class="fa-solid fa-circle-info me-1"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-primary bg-opacity-25 text-primary">Desktop App &amp; UI</span>
+                                <small class="text-secondary">01 / 03</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Cafe Management System</h5>
+                            <p class="text-secondary small mb-3">
+                                Desktop application for managing day-to-day cafe operations — handling orders, billing, and inventory with a relational MySQL database backend.
+                            </p>
+                            <div class="project-tags mb-3">
+                                <span class="skill-pill small">Java</span>
+                                <span class="skill-pill small">Apache NetBeans</span>
+                                <span class="skill-pill small">MySQL</span>
+                                <span class="skill-pill small">JDBC</span>
+                            </div>
+                            <button class="btn btn-outline-custom btn-sm w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#projectModal1">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> View Case Study &amp; Architecture
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Smart Dustbin Project -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="iot">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <div class="d-flex align-items-center justify-content-center h-100 bg-dark text-success fs-1">
+                                <i class="fa-solid fa-trash-can-arrow-up"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <button class="btn btn-sm btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#projectModal2">
+                                    <i class="fa-solid fa-circle-info me-1"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-success bg-opacity-25 text-success">IoT &amp; Hardware</span>
+                                <small class="text-secondary">02 / 03</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Smart Dustbin (IoT System)</h5>
+                            <p class="text-secondary small mb-3">
+                                Touchless automated waste disposal system built using Arduino microcontrollers, ultrasonic distance sensors, and servo motor lid controls.
+                            </p>
+                            <div class="project-tags mb-3">
+                                <span class="skill-pill small">Arduino</span>
+                                <span class="skill-pill small">C++</span>
+                                <span class="skill-pill small">Ultrasonic Sensor</span>
+                                <span class="skill-pill small">Servo Motor</span>
+                            </div>
+                            <button class="btn btn-outline-custom btn-sm w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#projectModal2">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> View Circuit &amp; System Logic
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Portfolio & Admin Panel Website -->
+                <div class="col-md-6 col-lg-4 project-item" data-category="desktop">
+                    <div class="glass-card project-card">
+                        <div class="project-img-wrapper">
+                            <div class="d-flex align-items-center justify-content-center h-100 bg-dark text-info fs-1">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+                            <div class="project-overlay">
+                                <button class="btn btn-sm btn-primary-gradient" data-bs-toggle="modal" data-bs-target="#projectModal3">
+                                    <i class="fa-solid fa-circle-info me-1"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-info bg-opacity-25 text-info">Full-Stack &amp; UI/UX</span>
+                                <small class="text-secondary">03 / 03</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Portfolio with Custom Admin Panel</h5>
+                            <p class="text-secondary small mb-3">
+                                Dynamic portfolio platform featuring a custom Admin Panel &amp; Viewer Message Inbox for managing contact submissions &amp; portfolio content.
+                            </p>
+                            <div class="project-tags mb-3">
+                                <span class="skill-pill small">HTML5 / CSS3</span>
+                                <span class="skill-pill small">JavaScript</span>
+                                <span class="skill-pill small">PHP</span>
+                                <span class="skill-pill small">MySQL / LocalStorage</span>
+                            </div>
+                            <button class="btn btn-outline-custom btn-sm w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#projectModal3">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> View Admin System Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         Contact Section
+         ========================================================================== -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-tag"><i class="fa-solid fa-paper-plane"></i> Let's Connect</div>
+                <h2 class="section-title">Get In <span class="gradient-text">Touch</span></h2>
+                <p class="text-secondary mx-auto" style="max-width: 600px;">
+                    Open to UI/UX Design &amp; Full-Stack Development opportunities, internships, and project collaborations.
+                </p>
+            </div>
+
+            <!-- Small compact contact buttons -->
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-2">
+
+                <!-- Phone -->
+                <a href="tel:+94702382494"
+                   class="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-decoration-none fw-semibold"
+                   style="background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.35);color:#10b981;font-size:0.88rem;transition:all 0.2s;"
+                   onmouseover="this.style.background='rgba(16,185,129,0.22)'"
+                   onmouseout="this.style.background='rgba(16,185,129,0.12)'">
+                    <i class="fa-solid fa-phone"></i>
+                    +94 70 238 2494
+                </a>
+
+                <!-- Email — opens mail app -->
+                <a href="mailto:navodyadahami5@gmail.com"
+                   class="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-decoration-none fw-semibold"
+                   style="background:rgba(0,176,186,0.12);border:1px solid rgba(0,176,186,0.35);color:var(--accent);font-size:0.88rem;transition:all 0.2s;"
+                   onmouseover="this.style.background='rgba(0,176,186,0.22)'"
+                   onmouseout="this.style.background='rgba(0,176,186,0.12)'">
+                    <i class="fa-solid fa-envelope"></i>
+                    navodyadahami5@gmail.com
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/navodya-desilva" target="_blank" rel="noopener"
+                   class="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-decoration-none fw-semibold"
+                   style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);color:#E7EDF6;font-size:0.88rem;transition:all 0.2s;"
+                   onmouseover="this.style.background='rgba(255,255,255,0.14)'"
+                   onmouseout="this.style.background='rgba(255,255,255,0.07)'">
+                    <i class="fa-brands fa-github"></i>
+                    github.com/navodya-desilva
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/dahami-navodya-de-silva-a83017412" target="_blank" rel="noopener"
+                   class="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-pill text-decoration-none fw-semibold"
+                   style="background:rgba(0,119,181,0.12);border:1px solid rgba(0,119,181,0.35);color:#0ea5e9;font-size:0.88rem;transition:all 0.2s;"
+                   onmouseover="this.style.background='rgba(0,119,181,0.22)'"
+                   onmouseout="this.style.background='rgba(0,119,181,0.12)'">
+                    <i class="fa-brands fa-linkedin"></i>
+                    Dahami Navodya De Silva
+                </a>
+
+            </div>
+
+            <!-- CV Download Button -->
+            <div class="text-center mt-4">
+                <a href="assets/cv/Dahami_Navodya_De_Silva CV.pdf" download="Dahami_Navodya_De_Silva CV.pdf"
+                   class="btn btn-primary-gradient px-5 py-2">
+                    <i class="fa-solid fa-file-arrow-down me-2"></i> Download My CV
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 border-top border-secondary border-opacity-25 text-center">
+        <div class="container">
+            <p class="text-secondary small mb-0">&copy; 2026 <strong>Navodya De Silva</strong> — UI/UX Designer &amp; Full-Stack Developer.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         Project Modals
+         ========================================================================== -->
+    <!-- Modal 1: Cafe Management System -->
+    <div class="modal fade" id="projectModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-light"><i class="fa-solid fa-mug-hot text-primary me-2"></i>Cafe Management System</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-primary">Java Swing</span>
+                        <span class="badge bg-info text-dark">Apache NetBeans</span>
+                        <span class="badge bg-success">MySQL Database</span>
+                        <span class="badge bg-warning text-dark">JDBC Connection</span>
+                    </div>
+                    <h6 class="fw-bold text-light mb-2">Project Overview</h6>
+                    <p class="text-secondary small">
+                        A full-fledged desktop application designed to streamline daily cafe business operations. It automates order taking, invoice billing generation, menu category management, and inventory tracking with persistent data stored in a relational MySQL database.
+                    </p>
+                    <h6 class="fw-bold text-light mb-2 mt-4">Key Features &amp; Technical Highlights</h6>
+                    <ul class="text-secondary small ps-3">
+                        <li><strong>Order &amp; Billing Management:</strong> Automated total calculation, tax integration, and instant receipt generation.</li>
+                        <li><strong>Inventory &amp; Menu CRUD:</strong> Add, edit, update, or remove menu items and track real-time stock levels.</li>
+                        <li><strong>Database Relational Schema:</strong> Built normalized MySQL tables for items, sales transactions, and staff access.</li>
+                        <li><strong>OOP Architecture:</strong> Developed modular Java classes adhering to Object-Oriented Software Design patterns.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Smart Dustbin System -->
+    <div class="modal fade" id="projectModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-light"><i class="fa-solid fa-trash-can-arrow-up text-success me-2"></i>Smart Dustbin (IoT System)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-success">Arduino UNO</span>
+                        <span class="badge bg-primary">C++ Microcontroller</span>
+                        <span class="badge bg-warning text-dark">Ultrasonic Sensor HC-SR04</span>
+                        <span class="badge bg-info text-dark">Servo Motor SG90</span>
+                    </div>
+                    <h6 class="fw-bold text-light mb-2">Project Overview</h6>
+                    <p class="text-secondary small">
+                        An automated touchless waste management prototype built for hygienic trash disposal. Utilizing an ultrasonic distance sensor, the system detects approaching users and automatically triggers a servo motor to open and close the lid smoothly.
+                    </p>
+                    <h6 class="fw-bold text-light mb-2 mt-4">Hardware Circuit &amp; System Logic</h6>
+                    <ul class="text-secondary small ps-3">
+                        <li><strong>Distance Detection:</strong> Measures distance in real-time using ultrasonic pulse wave calculations.</li>
+                        <li><strong>Servo Lid Control:</strong> Rotates servo motor to 90 degrees when an object comes within 20cm, holding for 3 seconds before closure.</li>
+                        <li><strong>Power Efficiency:</strong> Optimized loop logic to minimize battery consumption when idle.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Portfolio & Admin Panel Website -->
+    <div class="modal fade" id="projectModal3" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content glass-card">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold text-light"><i class="fa-solid fa-sliders text-info me-2"></i>Portfolio with Custom Admin Panel</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+                        <span class="badge bg-info text-dark">Full-Stack Web</span>
+                        <span class="badge bg-warning text-dark">UI/UX Interface</span>
+                        <span class="badge bg-primary">PHP &amp; MySQL</span>
+                    </div>
+                    <h6 class="fw-bold text-light mb-2">Project Overview</h6>
+                    <p class="text-secondary small">
+                        Inspired by Mahesha's portfolio platform, this full-stack web application provides a clean personal showcase along with a **Custom Admin Panel** and **Viewer Message Inbox** to review visitor contact submissions without touching source code.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS Script -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

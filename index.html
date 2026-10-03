@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome — Navodya De Silva</title>
+    <meta name="description" content="Welcome to the portfolio of Navodya De Silva — UI/UX Designer & Full-Stack Developer.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =============================================
+           ROOT & THEME VARIABLES
+        ============================================= */
+        :root {
+            --bg:          #060D1F;
+            --bg2:         #0b1630;
+            --text:        #E7EDF6;
+            --text-soft:   #8FA3C2;
+            --accent:      #00B0BA;
+            --accent2:     #00E5FF;
+            --glow:        rgba(0,176,186,0.3);
+            --warm:        rgba(255,220,100,0.0);
+            --card-bg:     rgba(15,32,54,0.6);
+            --card-border: rgba(0,176,186,0.2);
+        }
+
+        html.lamp-on {
+            --bg:          #f0f4ff;
+            --bg2:         #e4eaff;
+            --text:        #14213d;
+            --text-soft:   #4a5580;
+            --accent:      #007a82;
+            --accent2:     #00B0BA;
+            --glow:        rgba(0,122,130,0.25);
+            --card-bg:     rgba(255,255,255,0.75);
+            --card-border: rgba(0,122,130,0.2);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { height: 100%; }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.8s ease, color 0.5s ease;
+        }
+
+        /* =============================================
+           ANIMATED BACKGROUND BLOBS
+        ============================================= */
+        .bg-blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.18;
+            pointer-events: none;
+            transition: background 0.8s ease, opacity 0.8s ease;
+            animation: blobDrift 20s infinite alternate ease-in-out;
+        }
+        .blob-a {
+            width: 520px; height: 520px;
+            background: #00B0BA;
+            top: -100px; left: -100px;
+            animation-delay: 0s;
+        }
+        .blob-b {
+            width: 400px; height: 400px;
+            background: #6060c0;
+            bottom: -80px; right: -80px;
+            animation-delay: -8s;
+        }
+        .blob-c {
+            width: 300px; height: 300px;
+            background: #00E5FF;
+            top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            opacity: 0.08;
+            animation-delay: -4s;
+        }
+        html.lamp-on .blob-a { background: #ffd060; opacity: 0.25; }
+        html.lamp-on .blob-b { background: #ff9050; opacity: 0.18; }
+        html.lamp-on .blob-c { background: #ffe080; opacity: 0.12; }
+
+        @keyframes blobDrift {
+            0%   { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, 30px) scale(1.08); }
+        }
+
+        /* =============================================
+           WARM GLOW OVERLAY (when lamp ON)
+        ============================================= */
+        .warm-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 50% 30%, rgba(255,220,100,0) 0%, transparent 70%);
+            transition: background 0.8s ease;
+            z-index: 0;
+        }
+        html.lamp-on .warm-glow {
+            background: radial-gradient(ellipse at 50% 30%, rgba(255,220,100,0.18) 0%, transparent 65%);
+        }
+
+        /* =============================================
+           MAIN CARD / SCENE
+        ============================================= */
+        .welcome-card {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 48px 40px 40px;
+            max-width: 480px;
+            width: 92%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+            transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
+            text-align: center;
+        }
+        html.lamp-on .welcome-card {
+            box-shadow: 0 24px 60px rgba(255,200,60,0.12), 0 0 0 1px rgba(0,122,130,0.15);
+        }
+
+        /* =============================================
+           LAMP SVG
+        ============================================= */
+        .lamp-wrap {
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 8px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .lamp-svg {
+            width: 180px;
+            height: auto;
+            transition: filter 0.7s ease;
+            display: block;
+        }
+
+        html.lamp-on .lamp-svg {
+            filter: drop-shadow(0 0 28px rgba(255,215,60,0.7))
+                    drop-shadow(0 0 55px rgba(255,190,30,0.3));
+        }
+
+        /* Lamp parts */
+        .l-shade    { fill: #4a4a6a; transition: fill 0.6s; }
+        .l-rim      { fill: #3a3a5a; transition: fill 0.6s; }
+        .l-glow-in  { fill: rgba(255,228,100,0);   transition: fill 0.7s; }
+        .l-stem     { fill: #6068a0; transition: fill 0.6s; }
+        .l-base     { fill: #555880; transition: fill 0.6s; }
+        .l-cheek    { fill: #e06080; opacity: 0.75; }
+        .l-shine    { fill: rgba(255,255,255,0.06); }
+        .l-smile    { fill: none; stroke: rgba(255,255,255,0.8); stroke-width: 2.5; stroke-linecap: round; }
+        .l-chain    { stroke: #9a8050; }
+        .l-bead     { fill: #f0c040; transition: filter 0.5s; }
+
+        html.lamp-on .l-shade    { fill: #5a5a8c; }
+        html.lamp-on .l-rim      { fill: #4848a0; }
+        html.lamp-on .l-glow-in  { fill: rgba(255,228,100,0.28); }
+        html.lamp-on .l-stem     { fill: #7070b8; }
+        html.lamp-on .l-base     { fill: #6868a0; }
+        html.lamp-on .l-bead     { filter: drop-shadow(0 0 6px #f0c040); }
+
+        /* Eyes */
+        .l-eyes-closed { transition: opacity 0.4s ease; }
+        .l-eyes-open   { opacity: 0; transition: opacity 0.4s ease; }
+        html.lamp-on .l-eyes-closed { opacity: 0; }
+        html.lamp-on .l-eyes-open   { opacity: 1; }
+
+        /* Chain pull animation on click */
+        .lamp-wrap.pulling .chain-group {
+            animation: chainPull 0.35s ease;
+        }
+        @keyframes chainPull {
+            0%   { transform: translateY(0); }
+            40%  { transform: translateY(12px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Floor glow fan below shade */
+        .floor-rays {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 260px;
+            height: 140px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.7s ease;
+            z-index: -1;
+        }
+        html.lamp-on .floor-rays { opacity: 1; }
+
+        .floor-rays::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse at center top, rgba(255,220,80,0.28) 0%, transparent 70%);
+        }
+
+        /* =============================================
+           HINT TEXT UNDER LAMP
+        ============================================= */
+        .lamp-hint {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.7;
+            transition: color 0.5s;
+        }
+
+        /* Status badge */
+        .lamp-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-bottom: 28px;
+            transition: color 0.5s;
+        }
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #444;
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+        html.lamp-on .lamp-status { color: #c08800; }
+        html.lamp-on .status-dot  {
+            background: #f0c040;
+            box-shadow: 0 0 10px #f0c040;
+            animation: dotPulse 1.8s ease-in-out infinite;
+        }
+        @keyframes dotPulse {
+            0%,100% { box-shadow: 0 0 5px #f0c040; }
+            50%      { box-shadow: 0 0 16px #f0c040; }
+        }
+
+        /* =============================================
+           WELCOME TEXT
+        ============================================= */
+        .welcome-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .welcome-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(1.7rem, 5vw, 2.4rem);
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.15;
+            margin-bottom: 10px;
+            transition: color 0.5s;
+        }
+
+        .welcome-name .accent {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            transition: color 0.5s;
+        }
+
+        /* =============================================
+           ENTER BUTTON
+        ============================================= */
+        .enter-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.6s ease;
+            box-shadow: 0 8px 28px rgba(0,176,186,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,255,0);
+            transition: background 0.2s;
+        }
+        .enter-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 14px 36px rgba(0,176,186,0.45);
+        }
+        .enter-btn:hover::before { background: rgba(255,255,255,0.08); }
+        .enter-btn:active { transform: scale(0.98); }
+
+        .enter-arrow {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+        .enter-btn:hover .enter-arrow { transform: translateX(5px); }
+
+        html.lamp-on .enter-btn {
+            box-shadow: 0 8px 28px rgba(0,122,130,0.35);
+        }
+
+        /* =============================================
+           FOOTER NOTE
+        ============================================= */
+        .welcome-footer {
+            position: fixed;
+            bottom: 20px;
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            opacity: 0.5;
+            z-index: 3;
+            text-align: center;
+            transition: color 0.5s;
+        }
+
+        /* =============================================
+           RESPONSIVE
+        ============================================= */
+        @media (max-width: 500px) {
+            .welcome-card { padding: 36px 24px 32px; }
+            .lamp-svg { width: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background blobs -->
+    <div class="bg-blob blob-a"></div>
+    <div class="bg-blob blob-b"></div>
+    <div class="bg-blob blob-c"></div>
+    <div class="warm-glow"></div>
+
+    <!-- ─────────────────── MAIN CARD ─────────────────── -->
+    <div class="welcome-card">
+
+        <!-- LAMP -->
+        <div class="lamp-wrap" id="lampWrap" title="Click the lamp to switch theme">
+
+            <svg class="lamp-svg" viewBox="0 0 200 310" xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Inner glow cone -->
+                <ellipse class="l-glow-in" cx="100" cy="148" rx="62" ry="12"/>
+
+                <!-- Shade dome -->
+                <path class="l-shade" d="M44,148 Q38,90 100,72 Q162,90 156,148 Z"/>
+
+                <!-- Shade rim -->
+                <rect class="l-rim" x="44" y="145" width="112" height="10" rx="5"/>
+
+                <!-- Shine on dome -->
+                <ellipse class="l-shine" cx="80" cy="100" rx="18" ry="10" transform="rotate(-15,80,100)"/>
+
+                <!-- Cheeks -->
+                <ellipse class="l-cheek" cx="72" cy="125" rx="12" ry="8.5"/>
+                <ellipse class="l-cheek" cx="128" cy="125" rx="12" ry="8.5"/>
+
+                <!-- Closed eyes (lamp OFF / dark mode) -->
+                <g class="l-eyes-closed">
+                    <path d="M82,112 Q88,107 94,112" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M106,112 Q112,107 118,112" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="2.5" stroke-linecap="round"/>
+                </g>
+
+                <!-- Open eyes (lamp ON / bright mode) -->
+                <g class="l-eyes-open">
+                    <circle cx="88" cy="111" r="5.5" fill="rgba(255,255,255,0.95)"/>
+                    <circle cx="112" cy="111" r="5.5" fill="rgba(255,255,255,0.95)"/>
+                    <circle cx="89.5" cy="110" r="2.2" fill="#201840"/>
+                    <circle cx="113.5" cy="110" r="2.2" fill="#201840"/>
+                    <circle cx="91"    cy="108" r="1"   fill="white"/>
+                    <circle cx="115"   cy="108" r="1"   fill="white"/>
+                </g>
+
+                <!-- Smile -->
+                <path class="l-smile" d="M89,132 Q100,141 111,132"/>
+
+                <!-- Stem -->
+                <path class="l-stem" d="M96,155 Q92,200 96,240 L104,240 Q108,200 104,155 Z"/>
+
+                <!-- Base -->
+                <ellipse class="l-base" cx="100" cy="240" rx="40" ry="10"/>
+                <ellipse class="l-base" cx="100" cy="248" rx="30" ry="7"/>
+
+                <!-- Pull chain (animated group) -->
+                <g class="chain-group">
+                    <line class="l-chain" x1="148" y1="155" x2="148" y2="210"
+                          stroke-width="2" stroke-dasharray="5,5"/>
+                    <circle class="l-bead" cx="148" cy="215" r="9"/>
+                </g>
+            </svg>
+        </div>
+            <span id="statusText">Dark mode</span>
+        </div>
+
+        <!-- Divider -->
+        <div style="width:48px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));margin-bottom:20px;"></div>
+
+        <!-- Welcome text -->
+        <div class="welcome-label">✦ Welcome to my Portfolio</div>
+        <h1 class="welcome-name">
+            Navodya<br><span class="accent">De Silva</span>
+        </h1>
+        <p class="welcome-subtitle">
+            UI/UX Designer &amp; Full-Stack Developer<br>
+            crafting beautiful digital experiences
+        </p>
+
+        <!-- CTA -->
+        <a href="portfolio.html" class="enter-btn">
+            Enter Portfolio <span class="enter-arrow">→</span>
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="welcome-footer">
+        &copy; 2026 Dahami Navodya De Silva
+    </div>
+
+    <script>
+        const html     = document.documentElement;
+        const lampWrap = document.getElementById('lampWrap');
+        const statusTxt = document.getElementById('statusText');
+
+        let lampOn = false;
+
+        // Load saved theme on page start (so refresh keeps state)
+        const savedTheme = localStorage.getItem('navodya_theme') || 'dark';
+        if (savedTheme === 'light') {
+            lampOn = true;
+            html.classList.add('lamp-on');
+            if (statusTxt) statusTxt.textContent = 'Bright mode';
+        }
+
+        function toggleLamp() {
+            lampOn = !lampOn;
+            html.classList.toggle('lamp-on', lampOn);
+            statusTxt.textContent = lampOn ? 'Bright mode' : 'Dark mode';
+
+            // Save to localStorage so portfolio.html reads same theme
+            localStorage.setItem('navodya_theme', lampOn ? 'light' : 'dark');
+
+            // Chain pull animation
+            lampWrap.classList.remove('pulling');
+            void lampWrap.offsetWidth; // reflow
+            lampWrap.classList.add('pulling');
+        }
+
+        lampWrap.addEventListener('click', toggleLamp);
+        lampWrap.addEventListener('animationend', () => lampWrap.classList.remove('pulling'));
+
+        // Keyboard support: press L to toggle
+        document.addEventListener('keydown', e => {
+            if (e.key === 'l' || e.key === 'L') toggleLamp();
+        });
+    </script>
+</body>
+</html>
